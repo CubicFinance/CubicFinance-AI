@@ -20,7 +20,11 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    res.status(200).json({ reply: data.candidates[0].content.parts[0].text });
+    
+    // CORREÇÃO AQUI: Garante que extraímos o texto corretamente da estrutura da Google
+    const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lamento, não consegui processar a resposta.";
+    
+    res.status(200).json({ reply: botReply });
   } catch (error) {
     res.status(500).json({ error: "Erro na API" });
   }
