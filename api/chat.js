@@ -9,8 +9,7 @@ export default async function handler(req, res) {
 
   try {
     // Usando a versão estável v1 e o modelo Gemini Pro (mais compatível)
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${process.env.GEMINI_KEY}`, {
-      method: 'POST',
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${process.env.GEMINI_KEY}`, {      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: message }] }]
