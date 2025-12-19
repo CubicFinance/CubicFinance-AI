@@ -8,8 +8,8 @@ export default async function handler(req, res) {
   const { message } = req.body;
 
   try {
-    // Mudança para v1 e gemini-1.5-pro para compatibilidade total
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${process.env.GEMINI_KEY}`, {
+    // Usando a URL estável e o nome de modelo universal
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${process.env.GEMINI_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     const data = await response.json();
     
     if (data.error) {
-      return res.status(500).json({ reply: `Erro Google: ${data.error.message}` });
+      return res.status(200).json({ reply: `Erro na Google: ${data.error.message}` });
     }
 
     const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lamento, não consegui processar a resposta.";
