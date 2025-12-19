@@ -10,8 +10,7 @@ export default async function handler(req, res) {
 
   try {
     // Usando o modelo Gemini 2.0 Flash via endpoint v1beta (padrão para modelos 2.0)
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_KEY}`, {
-      method: 'POST',
+      const response = await fetch('https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_KEY}', {      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [
